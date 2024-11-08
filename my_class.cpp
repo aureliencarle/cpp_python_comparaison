@@ -93,6 +93,38 @@ void MyClass::run_loop(std::string const& file) const
     }
 }
 
+
+void MyClass::optimized_run_loop(std::string const& file) const
+{
+    std::ifstream infile(file);
+    std::string line;
+    // numbersList is not a (N, 3) 2D matrix but a (3N) 1D vector:
+    // (x1, y1, z1, x2, y2, z2, ..., xn, yn, zn)
+    std::vector<int> numbersList;
+    numbersList.reserve(3*1000); // Reserve memory for 1000 lines, above reallocations are less frequent and costly
+    
+    while (getline(infile, line)) {
+        std::stringstream ss(line);
+        std::string number;
+        
+        // Séparer les nombres par ';'
+        int n = 0;
+        while (getline(ss, number, ';')) {    
+            numbersList.push_back(std::stoi(number));
+        }
+        // Ajouter à la liste principale
+    }
+    std::cout << numbersList[0] << numbersList[1] << numbersList[2] << std::endl;
+
+    for (size_t n = 0; n < numbersList.size() / 3 ; ++n)
+    {
+        const double x = numbersList[3*n];
+        const double y = numbersList[3*n + 1];
+        const double z = numbersList[3*n + 2];
+        const double res = std::sqrt(x*x + y*y + z*z);
+    }
+}
+
 // Méthode pour traiter le dictionnaire et retourner la somme des valeurs
 int MyClass::process_dict(const std::unordered_map<std::string, int> &data)
 {

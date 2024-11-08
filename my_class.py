@@ -26,3 +26,7 @@ class MyClass:
 
         for n in numbers_array:
             x = np.sqrt( n[0]* n[0] + n[1]* n[1] +n[2]* n[2])
+
+    def run_numpy(self, name):
+        n = np.loadtxt(name, delimiter=";", dtype=int)
+        x = np.sqrt(n[:, 0] ** 2 + n[:, 1] ** 2 + n[:, 2] ** 2)

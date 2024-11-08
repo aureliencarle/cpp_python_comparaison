@@ -13,5 +13,6 @@ PYBIND11_MODULE(my_module, m)
         .def("sum_of_squares", &MyClass::sum_of_squares)
         .def("get_value", &MyClass::get_value)
         .def("run_loop", &MyClass::run_loop)
+        .def("optimized_run_loop", &MyClass::optimized_run_loop)
         .def("process_dict", &MyClass::process_dict, "Traitement du dictionnaire"); // Binding de la méthode
 }

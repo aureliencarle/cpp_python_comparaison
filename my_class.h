@@ -16,6 +16,7 @@ public:
     double sum_of_squares(int n);
     int get_value() const;
     void run_loop(std::string const& file) const;
+    void optimized_run_loop(std::string const& file) const;
     int process_dict(const std::unordered_map<std::string, int> &data);
 
 private:
